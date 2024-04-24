@@ -1,0 +1,7 @@
+.links {
+  a {
+    &.active {
+      color: darkorange;
+    }
+  }
+}

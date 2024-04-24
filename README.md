@@ -1,6 +1,16 @@
-# SuperHeroes
+# Heroes
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+
+## JSON Server
+
+This project is using Json Server for simulate an API, follow the steps bellow to install and run JSON server
+
+1 - Type on your terminal end press enter for installing Json server: `npm install -g json-server`
+
+2 - Now, from the src folder type: `json-server --watch db.json`
+
+3 - All ready, now the server will be available at http://localhost:3000
 
 ## Development server
 
@@ -16,7 +26,13 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This project utilizes [Jest](https://jestjs.io/) and [Angular Testing Library](https://testing-library.com/docs/angular-testing-library/intro/) to run tests for the Angular application.
+
+To run tests with Jest, use the following command:
+
+```bash
+npm run test:coverage
+```
 
 ## Running end-to-end tests
 
