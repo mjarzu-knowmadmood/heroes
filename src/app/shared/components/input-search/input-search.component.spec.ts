@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/angular';
-import { InputSearchComponent } from './input-search.component';
+import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
+import { InputSearchComponent } from './input-search.component';
 
 describe('InputSearchComponent', () => {
   it('should emit filterChange event with input value after 1s', async () => {

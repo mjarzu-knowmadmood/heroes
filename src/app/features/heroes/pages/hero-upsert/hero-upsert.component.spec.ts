@@ -29,7 +29,6 @@ describe('HeroUpsertComponent', () => {
 
     const nameControl = screen.getByRole('textbox', { name: /name/i });
     const saveButton = screen.getByRole('button', { name: /Create/i });
-    const backButton = screen.getByRole('button', { name: /Go back/i });
 
     await user.click(saveButton);
     expect(nameControl).toBeInvalid();

@@ -1,6 +1,5 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
 import { render, screen } from '@testing-library/angular';
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   it(`should render app`, async () => {

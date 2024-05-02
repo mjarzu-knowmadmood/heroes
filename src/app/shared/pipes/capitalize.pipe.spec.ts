@@ -1,4 +1,3 @@
-import { render } from '@testing-library/angular';
 import { CapitalizePipe } from './capitalize.pipe';
 
 describe('CapitalizePipe', () => {

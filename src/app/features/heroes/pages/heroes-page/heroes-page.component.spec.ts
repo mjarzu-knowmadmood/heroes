@@ -4,9 +4,9 @@ import userEvent from '@testing-library/user-event';
 import { of } from 'rxjs';
 import { Hero } from '../../../../shared/models/hero.model';
 import { HeroService } from '../../services/hero.service';
-import { HeroesListComponent } from './heroes-page.component';
+import { HeroesPageComponent } from './heroes-page.component';
 
-describe('HeroesListComponent', () => {
+describe('HeroesPageComponent', () => {
   it('should render heroes list Component', async () => {
     const heroes: Hero[] = [
       { id: '1', name: 'superman' },
@@ -15,7 +15,7 @@ describe('HeroesListComponent', () => {
     const heroServiceMock = {
       getHeroes: jest.fn().mockReturnValue(of(heroes)),
     };
-    await render(HeroesListComponent, {
+    await render(HeroesPageComponent, {
       imports: [HttpClientModule],
       componentProviders: [
         {
@@ -38,7 +38,7 @@ describe('HeroesListComponent', () => {
       deleteHero: jest.fn().mockReturnValue(of(null)),
     };
     const user = userEvent.setup();
-    await render(HeroesListComponent, {
+    await render(HeroesPageComponent, {
       imports: [HttpClientModule],
       componentProviders: [
         {
@@ -81,7 +81,7 @@ describe('HeroesListComponent', () => {
       ),
     };
     const user = userEvent.setup();
-    await render(HeroesListComponent, {
+    await render(HeroesPageComponent, {
       imports: [HttpClientModule],
       componentProviders: [
         {

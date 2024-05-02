@@ -6,11 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
-import {
-  Subject,
-  debounceTime,
-  distinctUntilChanged
-} from 'rxjs';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-input-search',
@@ -35,10 +31,7 @@ export class InputSearchComponent implements OnInit {
   ngOnInit(): void {
     this.searchValue
       .pipe(debounceTime(1000), distinctUntilChanged())
-      .subscribe((filterValue: string) => {
-        this.filterChange.emit(filterValue);
-        console.log(filterValue);
-      });
+      .subscribe((filterValue: string) => this.filterChange.emit(filterValue));
   }
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value;

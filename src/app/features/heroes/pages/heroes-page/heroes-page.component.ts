@@ -51,7 +51,7 @@ import { HeroListComponent } from '../../components/hero-list/hero-list.componen
     }
   `,
 })
-export class HeroesListComponent implements OnInit {
+export class HeroesPageComponent implements OnInit {
   heroes: Hero[] = [];
   isLoading: boolean = false;
 
