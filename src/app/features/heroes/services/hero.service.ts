@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Hero, HeroUpsert } from '../../../shared/models/hero.model';
 import { environment } from '../../../../environments/environment';
+import { Hero } from '../../../shared/models/hero.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,11 +26,11 @@ export class HeroService {
     return this.http.get<Hero>(url);
   }
 
-  addHero(hero: HeroUpsert): Observable<Hero> {
+  addHero(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.baseUrl, hero);
   }
 
-  updateHero(hero: HeroUpsert): Observable<Hero> {
+  updateHero(hero: Hero): Observable<Hero> {
     const url = `${this.baseUrl}/${hero.id}`;
     return this.http.put<Hero>(url, hero);
   }

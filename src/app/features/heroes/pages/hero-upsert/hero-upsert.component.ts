@@ -1,5 +1,11 @@
 import { Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -10,9 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
 import { UpperCaseInputDirective } from '../../../../shared/directives/upper-case-input.directive';
-import { HeroUpsert } from '../../../../shared/models/hero.model';
+import { Hero } from '../../../../shared/models/hero.model';
 import { HeroService } from '../../services/hero.service';
 
 @Component({
@@ -47,29 +52,25 @@ import { HeroService } from '../../services/hero.service';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeroUpsertComponent implements OnInit {
+export class HeroUpsertComponent implements OnChanges {
+  @Input() heroId!: string;
   form: FormGroup = this.fb.group({
     name: ['', Validators.required],
   });
   isNew: boolean = true;
-  heroId: string | null = null;
 
   constructor(
     private fb: FormBuilder,
     private location: Location,
-    private route: ActivatedRoute,
     private heroService: HeroService,
     private _snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      this.heroId = params['id'];
-      if (this.heroId) {
-        this.isNew = false;
-        this.loadHero(this.heroId);
-      }
-    });
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['heroId'] && this.heroId) {
+      this.isNew = false;
+      this.loadHero(this.heroId);
+    }
   }
 
   loadHero(id: string): void {
@@ -88,7 +89,7 @@ export class HeroUpsertComponent implements OnInit {
     }
 
     const name = this.form.value.name;
-    const heroData: HeroUpsert = { id: this.heroId, name };
+    const heroData: Hero = { id: this.heroId, name };
 
     if (this.isNew) {
       this.heroService.addHero(heroData).subscribe(() => {

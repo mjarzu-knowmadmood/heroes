@@ -1,5 +1,4 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
 import { render, screen } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 import { of } from 'rxjs';
@@ -43,16 +42,11 @@ describe('HeroUpsertComponent', () => {
   });
 
   it('should render hero upsert and fill the form for editing an existing hero', async () => {
-    const activatedRouteMock = {
-      params: of({ id: '1' }),
-    };
     const user = userEvent.setup();
     await render(HeroUpsertComponent, {
       imports: [HttpClientModule],
-      componentProviders: [
-        { provide: HeroService, useValue: heroServiceMock },
-        { provide: ActivatedRoute, useValue: activatedRouteMock },
-      ],
+      componentInputs: { heroId: '1' },
+      componentProviders: [{ provide: HeroService, useValue: heroServiceMock }],
     });
     expect(
       screen.getByRole('heading', { name: /Edit Hero/i })

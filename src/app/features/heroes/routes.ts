@@ -16,7 +16,7 @@ export const HEROES_ROUTES: Route[] = [
       ),
   },
   {
-    path: 'update/:id',
+    path: 'update/:heroId',
     loadComponent: () =>
       import('./pages/hero-upsert/hero-upsert.component').then(
         (m) => m.HeroUpsertComponent

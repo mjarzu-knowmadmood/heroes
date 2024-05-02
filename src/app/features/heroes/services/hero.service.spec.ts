@@ -3,8 +3,8 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { Hero } from '../../../shared/models/hero.model';
 import { HeroService } from './hero.service';
-import { Hero, HeroUpsert } from '../../../shared/models/hero.model';
 
 describe('HeroService', () => {
   let service: HeroService;
@@ -55,7 +55,7 @@ describe('HeroService', () => {
   });
 
   it('should add a hero via API', () => {
-    const mockHero: HeroUpsert = { id: '1', name: 'New Hero' };
+    const mockHero: Hero = { id: '1', name: 'New Hero' };
 
     service.addHero(mockHero).subscribe((hero) => {
       expect(hero).toEqual(mockHero);
@@ -80,7 +80,7 @@ describe('HeroService', () => {
   });
 
   it('should update a hero via API', () => {
-    const mockHero: HeroUpsert = { id: '1', name: 'Updated Hero' };
+    const mockHero: Hero = { id: '1', name: 'Updated Hero' };
 
     service.updateHero(mockHero).subscribe((hero) => {
       expect(hero).toEqual(mockHero);
