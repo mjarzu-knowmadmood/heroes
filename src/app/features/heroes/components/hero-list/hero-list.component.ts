@@ -27,6 +27,6 @@ import { HeroListItemComponent } from '../hero-list-item/hero-list-item.componen
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroListComponent {
-  @Input({ required: true }) heroes: Hero[] = [];
+  @Input({ required: true }) heroes!: Hero[];
   @Output() delete: EventEmitter<string> = new EventEmitter<string>();
 }

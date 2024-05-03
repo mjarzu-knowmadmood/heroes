@@ -4,8 +4,8 @@ export const HEROES_ROUTES: Route[] = [
   {
     path: '',
     loadComponent: () =>
-      import('./pages/heroes-page/heroes-page.component').then(
-        (m) => m.HeroesPageComponent
+      import('./pages/heroes-admin/heroes-admin.component').then(
+        (m) => m.HeroesAdminComponent
       ),
   },
   {

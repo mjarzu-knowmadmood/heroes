@@ -1,6 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  finalize,
+  throwError,
+} from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { Hero } from '../../../shared/models/hero.model';
 
