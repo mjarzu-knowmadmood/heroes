@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,18 +11,13 @@ import { HeroService } from '../../services/hero.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {
-  Observable,
-  filter,
-  switchMap
-} from 'rxjs';
+import { Observable, filter, switchMap } from 'rxjs';
 import { InputSearchComponent } from '../../../../shared/components/input-search/input-search.component';
 import { HeroListComponent } from '../../components/hero-list/hero-list.component';
 
 @Component({
   selector: 'app-super-heroes-list',
   standalone: true,
-
   imports: [
     MatIcon,
     MatButtonModule,
@@ -62,7 +54,6 @@ import { HeroListComponent } from '../../components/hero-list/hero-list.componen
 })
 export class HeroesAdminComponent implements OnInit {
   heroes$!: Observable<Hero[]>;
-  isLoading = false;
 
   constructor(
     private heroService: HeroService,
@@ -99,7 +90,7 @@ export class HeroesAdminComponent implements OnInit {
         switchMap(() => this.heroService.deleteHero(id))
       )
       .subscribe(() => {
-        this.heroes$ = this.heroService.getHeroes();
+        this.loadHeroes();
         this._snackBar.open('Hero deleted successfully', 'Close', {
           duration: 5000,
         });
