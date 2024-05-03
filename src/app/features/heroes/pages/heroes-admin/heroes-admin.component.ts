@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -51,6 +56,7 @@ import { HeroListComponent } from '../../components/hero-list/hero-list.componen
     </div>
     }
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesAdminComponent implements OnInit {
   heroes$!: Observable<Hero[]>;
@@ -58,7 +64,8 @@ export class HeroesAdminComponent implements OnInit {
   constructor(
     private heroService: HeroService,
     private dialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -91,6 +98,7 @@ export class HeroesAdminComponent implements OnInit {
       )
       .subscribe(() => {
         this.loadHeroes();
+        this.cdr.markForCheck();
         this._snackBar.open('Hero deleted successfully', 'Close', {
           duration: 5000,
         });
